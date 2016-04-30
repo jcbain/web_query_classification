@@ -1,0 +1,67 @@
+Computers\Hardware
+Computers\Internet & Intranet
+Computers\Mobile Computing
+Computers\Multimedia
+Computers\Networks & Telecommunication
+Computers\Security
+Computers\Software
+Computers\Other
+Entertainment\Celebrities
+Entertainment\Games & Toys
+Entertainment\Humor & Fun
+Entertainment\Movies
+Entertainment\Music
+Entertainment\Pictures & Photos
+Entertainment\Radio
+Entertainment\TV
+Entertainment\Other
+Information\Arts & Humanities
+Information\Companies & Industries
+Information\Science & Technology
+Information\Education
+Information\Law & Politics
+Information\Local & Regional 
+Information\References & Libraries
+Information\Other
+Living\Book & Magazine
+Living\Car & Garage
+Living\Career & Jobs
+Living\Dating & Relationships
+Living\Family & Kids
+Living\Fashion & Apparel
+Living\Finance & Investment
+Living\Food & Cooking
+Living\Furnishing & Houseware
+Living\Gifts & Collectables
+Living\Health & Fitness
+Living\Landscaping & Gardening
+Living\Pets & Animals
+Living\Real Estate
+Living\Religion & Belief
+Living\Tools & Hardware
+Living\Travel & Vacation
+Living\Other
+Online Community\Chat & Instant Messaging
+Online Community\Forums & Groups
+Online Community\Homepages
+Online Community\People Search
+Online Community\Personal Services
+Online Community\Other
+Shopping\Auctions & Bids
+Shopping\Stores & Products
+Shopping\Buying Guides & Researching
+Shopping\Lease & Rent
+Shopping\Bargains & Discounts
+Shopping\Other
+Sports\American Football
+Sports\Auto Racing
+Sports\Baseball
+Sports\Basketball
+Sports\Hockey
+Sports\News & Scores
+Sports\Schedules & Tickets
+Sports\Soccer
+Sports\Tennis
+Sports\Olympic Games
+Sports\Outdoor Recreations
+Sports\Other
