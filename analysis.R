@@ -10,9 +10,12 @@ df<-read.csv('data/queries.csv')
 head(df)
 
 
-x<-subset(df,select=c(char_count,verb_count,prep_count,noun_count,word_count,char_per_word,has_num,sup1))
+x<-subset(df,select=c(char_count,verb_count,prep_count,noun_count,word_count,char_per_word,has_num,label1,label2,label3,label4,label5,label6,label7))
 
 rf<-randomForest(sup1~.,data=x,importance=FALSE,proximity=FALSE)
+
+
+labels = colnames(x)[8:14]
 
 yeast = getTaskData(yeast.task)
 labels = colnames(yeast)[1:14]
