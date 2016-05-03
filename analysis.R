@@ -32,7 +32,7 @@ fv
 x<-subset(df,select=c(char_count,prep_count,noun_count,verb_count,word_count,char_per_word,meaning_count,has_num,label1,label2,label3,label4,label5,label6,label7))
 
 # partial subset
-x<-subset(df,select=c(char_count,prep_count,char_per_word,has_num,meaning_count,label1,label2,label3,label4,label5,label6,label7))
+x<-subset(df,select=c(char_count,prep_count,has_num,char_per_word,label1,label2,label3,label4,label5,label6,label7))
 
 # max information gain
 #     name        type        information.gain
@@ -46,7 +46,7 @@ x<-subset(df,select=c(char_count,prep_count,char_per_word,has_num,meaning_count,
 
 # decision tree
 query = x
-labels = colnames(query)[6:12]
+labels = colnames(query)[5:11]
 query.task = makeMultilabelTask(id = "multi", data = query, target = labels)
 query.task
 multilabel.lrn = makeLearner("classif.rpart", predict.type = "prob")
@@ -67,7 +67,7 @@ pred2 = predict(mod2, task = query.task)
 names(as.data.frame(pred2))
 performance(pred)
 performance(pred2, measures = list(hamloss, timepredict))
-getMultilabelBinaryPerformances(pred, measures = list(acc, mmce, auc,fn,fp,tp,tn))
+getMultilabelBinaryPerformances(pred, measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,f1))
 
 # neural network
 multilabel.lrn3 = makeLearner("classif.avNNet", predict.type = "prob")
@@ -75,20 +75,13 @@ multilabel.lrn3 = makeMultilabelBinaryRelevanceWrapper(multilabel.lrn3)
 mod3 = train(multilabel.lrn3, query.task)
 pred = predict(mod3, newdata = x[2001:2400,])
 performance(pred)
-getMultilabelBinaryPerformances(pred, measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
+getMultilabelBinaryPerformances(pred, measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,ppv,tpr,f1))
 
 # 5 fold CV neural network
-rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 2)
+rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 5)
 r = resample(learner = multilabel.lrn3, task = query.task, resampling = rdesc, show.info = FALSE)
 r
 names(r)
-getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
-
-# 5 fold CV decision tree
-rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 5)
-r = resample(learner = multilabel.lrn, task = query.task, resampling = rdesc, show.info = FALSE)
-r
-names(r)
-getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
-
-
+getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,f1))
+j<-as.data.frame(getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,f1)))
+write.csv(j,'output_nn.csv')
