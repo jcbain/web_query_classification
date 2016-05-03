@@ -77,6 +77,18 @@ pred = predict(mod3, newdata = x[2001:2400,])
 performance(pred)
 getMultilabelBinaryPerformances(pred, measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
 
-rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 5)
+# 5 fold CV neural network
+rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 2)
 r = resample(learner = multilabel.lrn3, task = query.task, resampling = rdesc, show.info = FALSE)
-r$aggr
+r
+names(r)
+getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
+
+# 5 fold CV decision tree
+rdesc = makeResampleDesc(method = "CV", stratify = FALSE, iters = 5)
+r = resample(learner = multilabel.lrn, task = query.task, resampling = rdesc, show.info = FALSE)
+r
+names(r)
+getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr))
+
+
