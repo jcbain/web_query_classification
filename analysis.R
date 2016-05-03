@@ -86,3 +86,17 @@ names(r)
 getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,f1))
 j<-as.data.frame(getMultilabelBinaryPerformances(r$pred,measures = list(acc, mmce, auc,fn,fp,tp,tn,ppv,tpr,f1)))
 write.csv(j,'output_nn.csv')
+
+##############
+### Graphs ###
+##############
+
+ggplot(df,aes(x=word_count))+geom_bar(fill = '#00ffcc', colour = '#00cca3')+xlab('word count')+
+  ggtitle('Number of Words per Query')
+mean(df$word_count)
+median(df$word_count)
+
+ggplot(df,aes(x=meaning_count))+geom_bar(fill = '#cc66ff', colour = '#9900e6')+xlab('meaning count')+
+  ggtitle('Number of Meanings per Query')
+mean(df$meaning_count)
+median(df$meaning_count)
