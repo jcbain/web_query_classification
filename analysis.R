@@ -20,11 +20,16 @@ library(e1071)
 ##########################################################################
 df<-read.csv('data/queries.csv')
 
+# add some additional features
+df$noun_per_word<-df$noun_count/df$word_count
+df$verb_per_word<-df$verb_count/df$word_count
+df$prep_per_word<-df$prep_count/df$word_count
+
 #####################################################################
 # find the information gain of each classification label separately #
 #####################################################################
-labs<-subset(df,select=c(char_count,prep_count,verb_count,meaning_count,word_count,char_per_word,has_num,label6))
-labels = colnames(labs)[9]
+labs<-subset(df,select=c(char_count,prep_per_word,verb_per_word,noun_per_word,word_count,char_per_word,has_num,label6))
+labels = colnames(labs)[8]
 task= makeClassifTask(id = "classify", data = labs, target = labels)
 fv = generateFilterValuesData(task, method = "information.gain")
 fv
@@ -100,3 +105,5 @@ ggplot(df,aes(x=meaning_count))+geom_bar(fill = '#cc66ff', colour = '#9900e6')+x
   ggtitle('Number of Meanings per Query')
 mean(df$meaning_count)
 median(df$meaning_count)
+
+
