@@ -1,5 +1,5 @@
 # Web Query Categorizatio
-**by** [James Bain](https://github.com/jcbain)
+**by** [James C. Bain](https://github.com/jcbain)
 
 |        file        | description |
 |--------------------|-------------|
